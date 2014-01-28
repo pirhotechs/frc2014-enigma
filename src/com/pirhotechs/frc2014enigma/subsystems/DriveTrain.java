@@ -1,0 +1,74 @@
+package com.pirhotechs.frc2014enigma.subsystems;
+
+import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import com.pirhotechs.frc2014enigma.RobotMap;
+import com.pirhotechs.frc2014enigma.commands.DriveWithJoysticks;
+
+/**
+ *
+ * @author Brandyn Bayes
+ */
+public class DriveTrain extends PIDSubsystem {
+
+    // The constants for the P, I and D portion of PID
+    private static final double Kp = 3;
+    private static final double Ki = .2;
+    private static final double Kd = 0.0;
+
+    RobotDrive drive;
+    AnalogChannel rangefinder;
+
+    // Initialize your subsystem here
+    public DriveTrain() {
+        super("DriveTrain", Kp, Ki, Kd);
+        if (!RobotMap.enableFourMotorDrive) {
+            drive = new RobotDrive(RobotMap.leftMotor, RobotMap.rightMotor);
+        } else {
+            drive = new RobotDrive(RobotMap.leftFrontMotor, RobotMap.leftRearMotor, RobotMap.rightFrontMotor, RobotMap.rightRearMotor);
+        }
+        
+        drive.setSafetyEnabled(RobotMap.safety);
+        //rangefinder = new AnalogChannel(RobotMap.rangefinder);
+    }
+
+    /**
+     * Set the default command to drive with joysticks.
+     */
+    public void initDefaultCommand() {
+        setDefaultCommand(new DriveWithJoysticks());
+    }
+
+    /**
+     * @return The value of the rangefinder used as the PID input device. These
+     * values correspond to your PID setpoint, in this case the value can be
+     * anywhere between 0v and 5v.
+     */
+    protected double returnPIDInput() {
+        return rangefinder.getVoltage();
+    }
+
+    /**
+     * @param output The value to set the output to as determined by the PID
+     * algorithm. This gets called each time through the PID loop to update the
+     * output to the motor.
+     */
+    protected void usePIDOutput(double output) {
+        tankDrive(output, output);
+    }
+
+    /**
+     * Implements the tank drive capability of the drivetrain.
+     *
+     * @param left The speed for the left side of the drivetrain.
+     * @param right The speed for the right side of the drivetrain.
+     */
+    public void tankDrive(double left, double right) {
+        drive.tankDrive(left, right);
+    }
+
+    public void arcadeDrive(double move, double rotate) {
+        drive.arcadeDrive(move, rotate);
+    }
+}
