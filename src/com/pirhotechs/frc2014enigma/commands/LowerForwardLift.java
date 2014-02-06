@@ -24,7 +24,7 @@ public class LowerForwardLift extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         forwardlift.lowerForwardLift();
-        Timer.delay(.04);
+        Timer.delay(0.05);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,12 +34,12 @@ public class LowerForwardLift extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        //forwardlift.stopForwareLift();
+        
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        //forwardlift.stopForwareLift();
+        
     }
 }

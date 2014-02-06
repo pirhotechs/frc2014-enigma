@@ -2,11 +2,12 @@ package com.pirhotechs.frc2014enigma;
 
 import com.pirhotechs.frc2014enigma.commands.CompressorStart;
 import com.pirhotechs.frc2014enigma.commands.CompressorStop;
-import com.pirhotechs.frc2014enigma.commands.LowerBallLift;
 import com.pirhotechs.frc2014enigma.commands.LowerForwardLift;
-import com.pirhotechs.frc2014enigma.commands.RaiseBallLift;
 import com.pirhotechs.frc2014enigma.commands.RaiseForwardLift;
-import com.pirhotechs.frc2014enigma.commands.StopForwardLift;
+import com.pirhotechs.frc2014enigma.commands.closeGrabber;
+import com.pirhotechs.frc2014enigma.commands.openGrabber;
+import com.pirhotechs.frc2014enigma.commands.startLauncher;
+import com.pirhotechs.frc2014enigma.commands.stopLauncher;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -54,6 +55,11 @@ public class OI {
             return rightJoy.getTrigger();
         }
     };
+    Trigger bothTriggers = new Trigger() {
+        public boolean get() {
+            return ltTrigger.get() && rtTrigger.get();
+        }
+    };
 
     public double getLeftJoyX() {
         //SmartDashboard.putDouble("leftJoyX", leftJoy.getX());
@@ -90,12 +96,12 @@ public class OI {
     }
 
     public OI() {
-        ltBtn2.whenPressed(new LowerBallLift());
-        ltBtn3.whenPressed(new RaiseBallLift());
+        bothTriggers.whileActive(new startLauncher());
+        bothTriggers.whenInactive(new stopLauncher());
+        ltBtn2.whenPressed(new closeGrabber());
+        ltBtn3.whenPressed(new openGrabber());
         ltBtn4.whenPressed(new LowerForwardLift());
-        ltBtn4.whenReleased(new StopForwardLift());
         ltBtn5.whenPressed(new RaiseForwardLift());
-        ltBtn5.whenReleased(new StopForwardLift());
         ltBtn6.whenPressed(new CompressorStart());
         ltBtn7.whenPressed(new CompressorStop());
     }

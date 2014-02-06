@@ -1,26 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.pirhotechs.frc2014enigma.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
- * @author Brandyn Bayes
+ * @author Brandyn
  */
-public class LowerBallLift extends CommandBase {
+public class closeGrabber extends CommandBase {
     
-    public LowerBallLift() {
-        requires(balllift);
+    public closeGrabber() {
+        requires(forwardlift);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        balllift.lowerBallLift();
-        Timer.delay(0.1);
+        forwardlift.closeGrabber();
+        Timer.delay(0.2);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,12 +34,11 @@ public class LowerBallLift extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        balllift.stopBallLift();
+        forwardlift.stopGrabber();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        balllift.stopBallLift();
     }
 }

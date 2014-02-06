@@ -19,14 +19,18 @@ public class RobotMap {
     public static final int rightFrontMotor = 3;
     public static final int rightRearMotor = 4;
     
-    public static final int forwardLiftTalon1 = 3;
-    public static final int forwardLiftTalon2 = 4;
+    public static final double grabberSpeed = 0.4;
+    public static final int forwardLiftTalon = 3;
+    
+    public static final double launcherSpeed = 0.4;
+    public static final int launcherLeftTalon = 4;
+    public static final int launcherRightTalon = 5;
     
     public static final int compressorSwitch = 1;
-    public static final int compressorRelay = 2;
+    public static final int compressorRelay = 1;
     
-    public static final int ballLiftUpSolenoid = 1;
-    public static final int ballLiftDownSolenoid = 2;
+    public static final int forwardLiftUpSolenoid = 1;
+    public static final int forwardLiftDownSolenoid = 2;
     
     public static final double sensitivity = 0.1;
     public static final boolean safety = false;

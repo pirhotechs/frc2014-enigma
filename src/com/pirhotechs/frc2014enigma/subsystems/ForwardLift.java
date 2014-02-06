@@ -7,6 +7,7 @@ package com.pirhotechs.frc2014enigma.subsystems;
 
 import com.pirhotechs.frc2014enigma.RobotMap;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -15,16 +16,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Brandyn
  */
 public class ForwardLift extends Subsystem {
-    Talon forwardLiftTalon1;
-    Talon forwardLiftTalon2;
-    double upspeed;
-    double downspeed;
+    Talon grabberTalon;
+    double grabberSpeed;
+    Solenoid BallLiftUp;
+    Solenoid BallLiftDown;
     
     public ForwardLift() {
-        forwardLiftTalon1 = new Talon(RobotMap.forwardLiftTalon1);
-        forwardLiftTalon2 = new Talon(RobotMap.forwardLiftTalon2);
-        upspeed = 0.75;
-        downspeed = 0.4;
+        grabberSpeed = RobotMap.grabberSpeed;
+        grabberTalon = new Talon(RobotMap.forwardLiftTalon);
+        BallLiftUp = new Solenoid(RobotMap.forwardLiftUpSolenoid);
+        BallLiftDown = new Solenoid(RobotMap.forwardLiftDownSolenoid);
     }
 
     public void initDefaultCommand() {
@@ -33,17 +34,29 @@ public class ForwardLift extends Subsystem {
     }
     
     public void raiseForwardLift() {
-        forwardLiftTalon1.set(-upspeed);
-        forwardLiftTalon2.set(upspeed);
+        BallLiftUp.set(true);
+        BallLiftDown.set(false);
     }
 
     public void lowerForwardLift() {
-        forwardLiftTalon1.set(downspeed);
-        forwardLiftTalon2.set(-downspeed);
+        BallLiftUp.set(false);
+        BallLiftDown.set(true);
     }
 
-    public void stopForwareLift() {
-        forwardLiftTalon1.set(0.0);
-        forwardLiftTalon2.set(0.0);
+    public void stopForwardLift() {
+        BallLiftUp.set(false);
+        BallLiftDown.set(false);
+    }
+    
+    public void openGrabber() {
+        grabberTalon.set(-grabberSpeed);
+    }
+
+    public void closeGrabber() {
+        grabberTalon.set(grabberSpeed);
+    }
+
+    public void stopGrabber() {
+        grabberTalon.set(0.0);
     }
 }
