@@ -5,6 +5,8 @@
  */
 package com.pirhotechs.frc2014enigma.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  *
  * @author Brandyn
@@ -22,6 +24,8 @@ public class startLauncher extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         launcher.run();
+        Timer.delay(0.15);
+        launcher.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()

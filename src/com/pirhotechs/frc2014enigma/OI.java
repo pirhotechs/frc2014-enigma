@@ -98,10 +98,10 @@ public class OI {
     public OI() {
         bothTriggers.whileActive(new startLauncher());
         bothTriggers.whenInactive(new stopLauncher());
-        ltBtn2.whenPressed(new closeGrabber());
-        ltBtn3.whenPressed(new openGrabber());
-        ltBtn4.whenPressed(new LowerForwardLift());
-        ltBtn5.whenPressed(new RaiseForwardLift());
+        ltBtn4.whenPressed(new closeGrabber());
+        ltBtn5.whenPressed(new openGrabber());
+        ltBtn2.whenPressed(new LowerForwardLift());
+        ltBtn3.whenPressed(new RaiseForwardLift());
         ltBtn6.whenPressed(new CompressorStart());
         ltBtn7.whenPressed(new CompressorStop());
     }

@@ -22,7 +22,7 @@ public class RobotMap {
     public static final double grabberSpeed = 0.4;
     public static final int forwardLiftTalon = 3;
     
-    public static final double launcherSpeed = 0.4;
+    public static final double launcherSpeed = 1.0;
     public static final int launcherLeftTalon = 4;
     public static final int launcherRightTalon = 5;
     

@@ -30,8 +30,8 @@ public class Launcher extends Subsystem {
     }
     
     public void run() {
-        leftTalon.set(-launcherSpeed);
-        rightTalon.set(launcherSpeed);
+        leftTalon.set(launcherSpeed);
+        rightTalon.set(-launcherSpeed);
     }
     
     public void stop() {
