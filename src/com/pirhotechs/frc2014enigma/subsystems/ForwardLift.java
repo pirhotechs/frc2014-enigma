@@ -16,14 +16,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Brandyn
  */
 public class ForwardLift extends Subsystem {
-    Talon grabberTalon;
-    double grabberSpeed;
+    Solenoid grabberOpen;
+    Solenoid grabberClose;
     Solenoid BallLiftUp;
     Solenoid BallLiftDown;
     
     public ForwardLift() {
-        grabberSpeed = RobotMap.grabberSpeed;
-        grabberTalon = new Talon(RobotMap.forwardLiftTalon);
+        grabberOpen = new Solenoid(RobotMap.grabberOpenSolenoid);
+        grabberClose = new Solenoid(RobotMap.grabberCloseSolenoid);
         BallLiftUp = new Solenoid(RobotMap.forwardLiftUpSolenoid);
         BallLiftDown = new Solenoid(RobotMap.forwardLiftDownSolenoid);
     }
@@ -49,14 +49,17 @@ public class ForwardLift extends Subsystem {
     }
     
     public void openGrabber() {
-        grabberTalon.set(-grabberSpeed);
+        grabberOpen.set(true);
+        grabberClose.set(false);
     }
 
     public void closeGrabber() {
-        grabberTalon.set(grabberSpeed);
+        grabberOpen.set(false);
+        grabberClose.set(true);
     }
-
+    
     public void stopGrabber() {
-        grabberTalon.set(0.0);
+        grabberOpen.set(false);
+        grabberClose.set(false);
     }
 }

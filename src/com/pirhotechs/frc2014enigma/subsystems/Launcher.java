@@ -17,11 +17,13 @@ public class Launcher extends Subsystem {
     Talon leftTalon;
     Talon rightTalon;
     double launcherSpeed;
+    double loadSpeed;
     
     public Launcher() {
         leftTalon = new Talon(RobotMap.launcherLeftTalon);
         rightTalon = new Talon(RobotMap.launcherRightTalon);
         launcherSpeed = RobotMap.launcherSpeed;
+        loadSpeed = RobotMap.loadSpeed;
     }
 
     public void initDefaultCommand() {
@@ -32,6 +34,16 @@ public class Launcher extends Subsystem {
     public void run() {
         leftTalon.set(launcherSpeed);
         rightTalon.set(-launcherSpeed);
+    }
+    
+    public void backSlow() {
+        leftTalon.set(-loadSpeed);
+        rightTalon.set(loadSpeed);
+    }
+    
+    public void forwardSlow() {
+        leftTalon.set(loadSpeed);
+        rightTalon.set(-loadSpeed);
     }
     
     public void stop() {

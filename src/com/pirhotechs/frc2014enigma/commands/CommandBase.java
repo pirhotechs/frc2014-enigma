@@ -33,6 +33,8 @@ public abstract class CommandBase extends Command {
     public static LowerForwardLift lowerforwardlift = new LowerForwardLift();
     public static startLauncher startlauncher = new startLauncher();
     public static stopLauncher stoplauncher = new stopLauncher();
+    public static backSlowLauncher backslowlauncher = new backSlowLauncher();
+    public static forwardSlowLauncher forwardslowlauncher = new forwardSlowLauncher();
     public static openGrabber opengrabber = new openGrabber();
     public static closeGrabber closegrabber = new closeGrabber();
 

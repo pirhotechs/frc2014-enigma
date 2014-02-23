@@ -6,6 +6,8 @@ import com.pirhotechs.frc2014enigma.commands.LowerForwardLift;
 import com.pirhotechs.frc2014enigma.commands.RaiseForwardLift;
 import com.pirhotechs.frc2014enigma.commands.closeGrabber;
 import com.pirhotechs.frc2014enigma.commands.openGrabber;
+import com.pirhotechs.frc2014enigma.commands.backSlowLauncher;
+import com.pirhotechs.frc2014enigma.commands.forwardSlowLauncher;
 import com.pirhotechs.frc2014enigma.commands.startLauncher;
 import com.pirhotechs.frc2014enigma.commands.stopLauncher;
 import edu.wpi.first.wpilibj.Joystick;
@@ -35,6 +37,7 @@ public class OI {
     Button ltBtn9 = new JoystickButton(leftJoy, 9);
     Button ltBtn10 = new JoystickButton(leftJoy, 10);
     Button ltBtn11 = new JoystickButton(leftJoy, 11);
+    Button ltBtn12 = new JoystickButton(leftJoy, 12);
     Trigger ltTrigger = new Trigger() {
         public boolean get() {
             return leftJoy.getTrigger();
@@ -57,7 +60,7 @@ public class OI {
     };
     Trigger bothTriggers = new Trigger() {
         public boolean get() {
-            return ltTrigger.get() && rtTrigger.get();
+            return leftJoy.getRawButton(2) && ltTrigger.get();
         }
     };
 
@@ -98,11 +101,21 @@ public class OI {
     public OI() {
         bothTriggers.whileActive(new startLauncher());
         bothTriggers.whenInactive(new stopLauncher());
+        ltBtn11.whenPressed(new backSlowLauncher());
+        ltBtn11.whenReleased(new stopLauncher());
+        ltBtn12.whenPressed(new forwardSlowLauncher());
+        ltBtn12.whenReleased(new stopLauncher());
+        ltBtn6.whenPressed(new openGrabber());
         ltBtn4.whenPressed(new closeGrabber());
-        ltBtn5.whenPressed(new openGrabber());
-        ltBtn2.whenPressed(new LowerForwardLift());
-        ltBtn3.whenPressed(new RaiseForwardLift());
-        ltBtn6.whenPressed(new CompressorStart());
-        ltBtn7.whenPressed(new CompressorStop());
+        ltBtn5.whenPressed(new RaiseForwardLift());
+        ltBtn3.whenPressed(new LowerForwardLift());
+        rtTrigger.whenActive(new backSlowLauncher());
+        rtTrigger.whenInactive(new stopLauncher());
+        rtBtn4.whenPressed(new closeGrabber());
+        rtBtn5.whenPressed(new openGrabber());
+        rtBtn2.whenPressed(new LowerForwardLift());
+        rtBtn3.whenPressed(new RaiseForwardLift());
+        rtBtn8.whenPressed(new CompressorStart());
+        rtBtn9.whenPressed(new CompressorStop());
     }
 }

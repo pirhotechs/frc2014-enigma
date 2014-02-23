@@ -1,36 +1,27 @@
 package com.pirhotechs.frc2014enigma.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import com.pirhotechs.frc2014enigma.RobotMap;
 import com.pirhotechs.frc2014enigma.commands.DriveWithJoysticks;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  * @author Brandyn Bayes
  */
-public class DriveTrain extends PIDSubsystem {
-
-    // The constants for the P, I and D portion of PID
-    private static final double Kp = 3;
-    private static final double Ki = .2;
-    private static final double Kd = 0.0;
+public class DriveTrain extends Subsystem {
 
     RobotDrive drive;
-    AnalogChannel rangefinder;
+    Talon leftTalon;
+    Talon rightTalon;
 
     // Initialize your subsystem here
     public DriveTrain() {
-        super("DriveTrain", Kp, Ki, Kd);
-        if (!RobotMap.enableFourMotorDrive) {
-            drive = new RobotDrive(RobotMap.leftMotor, RobotMap.rightMotor);
-        } else {
-            drive = new RobotDrive(RobotMap.leftFrontMotor, RobotMap.leftRearMotor, RobotMap.rightFrontMotor, RobotMap.rightRearMotor);
-        }
-        
+        leftTalon = new Talon(RobotMap.leftMotor);
+        rightTalon = new Talon(RobotMap.rightMotor);
+        drive = new RobotDrive(leftTalon, rightTalon);        
         drive.setSafetyEnabled(RobotMap.safety);
-        //rangefinder = new AnalogChannel(RobotMap.rangefinder);
     }
 
     /**
@@ -38,24 +29,6 @@ public class DriveTrain extends PIDSubsystem {
      */
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithJoysticks());
-    }
-
-    /**
-     * @return The value of the rangefinder used as the PID input device. These
-     * values correspond to your PID setpoint, in this case the value can be
-     * anywhere between 0v and 5v.
-     */
-    protected double returnPIDInput() {
-        return rangefinder.getVoltage();
-    }
-
-    /**
-     * @param output The value to set the output to as determined by the PID
-     * algorithm. This gets called each time through the PID loop to update the
-     * output to the motor.
-     */
-    protected void usePIDOutput(double output) {
-        tankDrive(output, output);
     }
 
     /**
@@ -70,5 +43,7 @@ public class DriveTrain extends PIDSubsystem {
 
     public void arcadeDrive(double move, double rotate) {
         drive.arcadeDrive(move, rotate);
+        //System.out.println("Y" + move);
+        //System.out.println("X" + rotate);
     }
 }

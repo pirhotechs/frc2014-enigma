@@ -12,17 +12,11 @@ public class RobotMap {
     public static final int leftMotor = 1;
     public static final int rightMotor = 2;
     
-    //four motor drive
-    public static final boolean enableFourMotorDrive = false; //enable for four motor drive, will default to two motor drive if false
-    public static final int leftFrontMotor = 1;
-    public static final int leftRearMotor = 2;
-    public static final int rightFrontMotor = 3;
-    public static final int rightRearMotor = 4;
-    
     public static final double grabberSpeed = 0.4;
     public static final int forwardLiftTalon = 3;
     
-    public static final double launcherSpeed = 1.0;
+    public static final double launcherSpeed = 0.7;
+    public static final double loadSpeed = 0.3;
     public static final int launcherLeftTalon = 4;
     public static final int launcherRightTalon = 5;
     
@@ -32,7 +26,10 @@ public class RobotMap {
     public static final int forwardLiftUpSolenoid = 1;
     public static final int forwardLiftDownSolenoid = 2;
     
-    public static final double sensitivity = 0.1;
+    public static final int grabberOpenSolenoid = 3;
+    public static final int grabberCloseSolenoid = 4;
+    
+    public static final double sensitivity = 0.15;
     public static final boolean safety = false;
     public static final boolean autoStartCompressor = true;
 }

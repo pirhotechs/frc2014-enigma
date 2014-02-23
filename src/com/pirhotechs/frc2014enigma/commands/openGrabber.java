@@ -24,7 +24,6 @@ public class openGrabber extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         forwardlift.openGrabber();
-        Timer.delay(0.2);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,7 +33,7 @@ public class openGrabber extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        forwardlift.stopGrabber();
+        
     }
 
     // Called when another command which requires one or more of the same

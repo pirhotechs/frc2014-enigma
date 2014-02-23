@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.Timer;
  *
  * @author Brandyn
  */
-public class startLauncher extends CommandBase {
+public class backSlowLauncher extends CommandBase {
     
-    public startLauncher() {
+    public backSlowLauncher() {
         requires(launcher);
     }
 
@@ -23,8 +23,8 @@ public class startLauncher extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        launcher.run();
-        //Timer.delay(0.5);
+        launcher.backSlow();
+        //Timer.delay(0.1);
         //launcher.stop();
     }
 
