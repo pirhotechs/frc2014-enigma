@@ -53,54 +53,61 @@ public class OI {
     Button rtBtn9 = new JoystickButton(rightJoy, 9);
     Button rtBtn10 = new JoystickButton(rightJoy, 10);
     Button rtBtn11 = new JoystickButton(rightJoy, 11);
+    Button rtBtn12 = new JoystickButton(rightJoy, 12);
     Trigger rtTrigger = new Trigger() {
         public boolean get() {
             return rightJoy.getTrigger();
         }
     };
-    Trigger bothTriggers = new Trigger() {
+    Trigger launchSafety = new Trigger() {
         public boolean get() {
             return leftJoy.getRawButton(2) && ltTrigger.get();
         }
     };
 
     public double getLeftJoyX() {
-        //SmartDashboard.putDouble("leftJoyX", leftJoy.getX());
+        double tempSpeed;
         if (Math.abs(leftJoy.getX()) > RobotMap.sensitivity) {
-            return leftJoy.getX();
+            tempSpeed = leftJoy.getX();
         } else {
-            return 0;
+            tempSpeed = 0;
         }
+        return tempSpeed;
     }
 
     public double getLeftJoyY() {
-        //SmartDashboard.putDouble("leftJoyY", leftJoy.getY());
+        double tempSpeed;
         if (Math.abs(leftJoy.getY()) > RobotMap.sensitivity) {
-            return leftJoy.getY();
+            tempSpeed = leftJoy.getY();
         } else {
-            return 0;
+            tempSpeed = 0;
         }
+        return tempSpeed;
     }
 
     public double getRightJoyX() {
+        double tempSpeed;
         if (Math.abs(rightJoy.getX()) > RobotMap.sensitivity) {
-            return rightJoy.getX();
+            tempSpeed = rightJoy.getX();
         } else {
-            return 0;
+            tempSpeed = 0;
         }
+        return tempSpeed;
     }
 
     public double getRightJoyY() {
+        double tempSpeed;
         if (Math.abs(rightJoy.getY()) > RobotMap.sensitivity) {
-            return rightJoy.getY();
+            tempSpeed = rightJoy.getY();
         } else {
-            return 0;
+            tempSpeed = 0;
         }
+        return tempSpeed;
     }
 
     public OI() {
-        bothTriggers.whileActive(new startLauncher());
-        bothTriggers.whenInactive(new stopLauncher());
+        launchSafety.whileActive(new startLauncher());
+        launchSafety.whenInactive(new stopLauncher());
         ltBtn11.whenPressed(new backSlowLauncher());
         ltBtn11.whenReleased(new stopLauncher());
         ltBtn12.whenPressed(new forwardSlowLauncher());

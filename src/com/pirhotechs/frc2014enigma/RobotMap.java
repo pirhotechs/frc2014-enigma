@@ -12,9 +12,6 @@ public class RobotMap {
     public static final int leftMotor = 1;
     public static final int rightMotor = 2;
     
-    public static final double grabberSpeed = 0.4;
-    public static final int forwardLiftTalon = 3;
-    
     public static final double launcherSpeed = 0.7;
     public static final double loadSpeed = 0.3;
     public static final int launcherLeftTalon = 4;
